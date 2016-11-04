@@ -8,64 +8,90 @@ package battleship;
 import java.awt.*;
 
 public class Board {
-    static boolean SecretPathActive = false;
-    Window window;
-    final static int NUM_ROWS = 20;
-    final static int NUM_COLUMNS = 20;
+    final static int NUM_ROWS = 10;
+    final static int NUM_COLUMNS = 10;
     
-    final static int PATH = 0;
-    final static int WALL = 1;
-    final static int SECR = 2;
+    final static int WATR = 0;
+    final static int SHIP = 1;
+    final static int ShowCrouser=2;
     
-    static int board[][] = new int [NUM_ROWS][NUM_COLUMNS];
-//    static int boardOrig[][] = {{WALL,WALL,WALL,WALL,WALL,WALL,WALL,WALL,WALL,WALL,WALL,WALL,WALL,WALL,WALL,WALL,WALL,WALL,WALL,WALL},  //1
-//                                {WALL,WALL,WALL,WALL,WALL,WALL,PATH,PATH,PATH,PATH,PATH,PATH,PATH,WALL,WALL,PATH,PATH,PATH,PATH,WALL},  //2
-//                                {WALL,PATH,PATH,PATH,WALL,WALL,PATH,WALL,PATH,WALL,WALL,WALL,PATH,WALL,WALL,PATH,WALL,WALL,PATH,WALL},  //3
-//                                {WALL,PATH,WALL,PATH,PATH,PATH,PATH,WALL,PATH,WALL,WALL,WALL,PATH,WALL,WALL,PATH,WALL,WALL,PATH,WALL},  //4
-//                                {WALL,PATH,WALL,WALL,WALL,PATH,WALL,PATH,PATH,WALL,PATH,PATH,PATH,WALL,WALL,PATH,WALL,PATH,PATH,WALL},  //5
-//                                {WALL,PATH,WALL,WALL,WALL,PATH,WALL,PATH,WALL,WALL,PATH,WALL,WALL,WALL,WALL,PATH,WALL,PATH,WALL,WALL},  //6
-//                                {WALL,PATH,PATH,WALL,PATH,PATH,WALL,PATH,PATH,PATH,PATH,PATH,PATH,PATH,PATH,PATH,WALL,PATH,WALL,WALL},  //7
-//                                {WALL,WALL,PATH,PATH,PATH,WALL,PATH,PATH,WALL,WALL,WALL,PATH,WALL,WALL,WALL,WALL,WALL,PATH,WALL,WALL},  //8
-//                                {WALL,WALL,PATH,WALL,WALL,WALL,PATH,WALL,WALL,WALL,WALL,PATH,WALL,WALL,WALL,WALL,WALL,PATH,WALL,WALL},  //9
-//                                {WALL,PATH,PATH,WALL,PATH,PATH,PATH,WALL,WALL,PATH,PATH,PATH,WALL,WALL,WALL,PATH,PATH,PATH,WALL,WALL},  //10
-//                                {WALL,PATH,WALL,WALL,PATH,WALL,WALL,WALL,WALL,PATH,WALL,WALL,WALL,WALL,WALL,PATH,WALL,PATH,WALL,WALL},  //11
-//                                {WALL,PATH,PATH,PATH,PATH,WALL,WALL,WALL,PATH,PATH,WALL,WALL,PATH,PATH,PATH,PATH,WALL,PATH,PATH,WALL},  //12
-//                                {WALL,PATH,WALL,WALL,SECR,SECR,SECR,PATH,PATH,WALL,WALL,WALL,PATH,WALL,SECR,WALL,WALL,WALL,PATH,WALL},  //13
-//                                {WALL,PATH,PATH,WALL,WALL,WALL,WALL,PATH,WALL,WALL,WALL,PATH,PATH,WALL,SECR,WALL,WALL,PATH,PATH,WALL},  //14
-//                                {WALL,WALL,PATH,PATH,WALL,WALL,WALL,PATH,PATH,WALL,WALL,PATH,WALL,WALL,SECR,WALL,WALL,PATH,WALL,WALL},  //15
-//                                {WALL,WALL,WALL,PATH,PATH,PATH,WALL,WALL,PATH,WALL,WALL,PATH,WALL,WALL,SECR,WALL,WALL,PATH,PATH,WALL},  //16
-//                                {WALL,PATH,PATH,PATH,WALL,PATH,WALL,WALL,PATH,WALL,WALL,PATH,WALL,WALL,SECR,WALL,WALL,WALL,PATH,WALL},  //17
-//                                {WALL,PATH,WALL,WALL,WALL,PATH,WALL,WALL,PATH,WALL,PATH,PATH,PATH,PATH,PATH,PATH,WALL,WALL,PATH,WALL},  //18
-//                                {WALL,PATH,PATH,PATH,PATH,PATH,PATH,PATH,PATH,PATH,PATH,WALL,WALL,WALL,WALL,PATH,PATH,PATH,PATH,WALL},  //19
-//                                {WALL,WALL,WALL,WALL,WALL,WALL,WALL,WALL,WALL,WALL,WALL,WALL,WALL,WALL,WALL,WALL,WALL,WALL,WALL,WALL}};
+//    static int board[][] = new int [NUM_ROWS][NUM_COLUMNS];
+    static int board1[][] = {{SHIP,SHIP,SHIP,SHIP,SHIP,SHIP,SHIP,SHIP,SHIP,SHIP,SHIP},  
+                             {SHIP,SHIP,SHIP,SHIP,SHIP,SHIP,WATR,WATR,WATR,WATR,SHIP},  
+                             {SHIP,WATR,WATR,WATR,SHIP,SHIP,WATR,SHIP,WATR,SHIP,SHIP},  
+                             {SHIP,WATR,SHIP,WATR,WATR,WATR,WATR,SHIP,WATR,SHIP,SHIP},  
+                             {SHIP,WATR,SHIP,SHIP,SHIP,WATR,SHIP,WATR,WATR,SHIP,SHIP},  
+                             {SHIP,WATR,SHIP,SHIP,SHIP,WATR,SHIP,WATR,SHIP,SHIP,SHIP},  
+                             {SHIP,WATR,WATR,SHIP,WATR,WATR,SHIP,WATR,WATR,SHIP,WATR},  
+                             {SHIP,SHIP,WATR,WATR,WATR,SHIP,WATR,WATR,SHIP,SHIP,SHIP},  
+                             {SHIP,SHIP,WATR,SHIP,SHIP,SHIP,WATR,SHIP,SHIP,SHIP,SHIP},
+                             {SHIP,SHIP,WATR,SHIP,SHIP,SHIP,WATR,SHIP,SHIP,SHIP,SHIP}}; 
+    
+    static int board2[][] = {{SHIP,SHIP,SHIP,SHIP,SHIP,SHIP,SHIP,SHIP,SHIP,SHIP,SHIP},  
+                             {SHIP,SHIP,SHIP,SHIP,SHIP,SHIP,WATR,WATR,WATR,WATR,SHIP},  
+                             {SHIP,WATR,WATR,WATR,SHIP,SHIP,WATR,SHIP,WATR,SHIP,SHIP},  
+                             {SHIP,WATR,SHIP,WATR,WATR,WATR,WATR,SHIP,WATR,SHIP,SHIP},  
+                             {SHIP,WATR,SHIP,SHIP,SHIP,WATR,SHIP,WATR,WATR,SHIP,SHIP},  
+                             {SHIP,WATR,SHIP,SHIP,SHIP,WATR,SHIP,WATR,SHIP,SHIP,SHIP},  
+                             {SHIP,WATR,WATR,SHIP,WATR,WATR,SHIP,WATR,WATR,SHIP,WATR},  
+                             {SHIP,SHIP,WATR,WATR,WATR,SHIP,WATR,WATR,SHIP,SHIP,SHIP},  
+                             {SHIP,SHIP,WATR,SHIP,SHIP,SHIP,WATR,SHIP,SHIP,SHIP,SHIP},
+                             {SHIP,SHIP,WATR,SHIP,SHIP,SHIP,WATR,SHIP,SHIP,SHIP,SHIP}}; 
     
     public static void Draw(Graphics2D g)
     {
 //Calculate the width and height of each board square.
-        int ydelta = Window.getHeight2()/NUM_ROWS;
-        int xdelta = Window.getWidth2()/NUM_COLUMNS;
+        int ydelta = 30; // rows
+        int xdelta = 30; // columns
         
 
  //draw grid
         g.setColor(Color.black);
-        for (int zi = 1;zi<NUM_ROWS;zi++)
+        for (int zi = 0;zi<=NUM_ROWS+1;zi++)
         {
-            g.drawLine(Window.getX(0),Window.getY(zi*ydelta),
-                    Window.getX(Window.getWidth2()),Window.getY(zi*ydelta));
+            //for board1
+            g.drawLine(Window.getX(30),Window.getY(zi*ydelta),
+                    Window.getX((NUM_ROWS+1)*ydelta),Window.getY(zi*ydelta));
+            //for board2
+            g.drawLine(Window.getX(30),Window.getYNormal(zi*ydelta),
+                    Window.getX((NUM_ROWS+1)*ydelta),Window.getYNormal(zi*ydelta));
         }
-        for (int zi = 1;zi<NUM_COLUMNS;zi++)
+        for (int zx = 0;zx<=NUM_COLUMNS+1;zx++)
         {
-            g.drawLine(Window.getX(zi*xdelta),Window.getY(0),
-                    Window.getX(zi*xdelta),Window.getY(Window.getHeight2()));
+            //for board1
+            g.drawLine(Window.getX(zx*xdelta),Window.getY(30),
+                    Window.getX(zx*xdelta),Window.getY((NUM_COLUMNS+1)*xdelta));
+            //for board2
+            g.drawLine(Window.getX(zx*xdelta),Window.getYNormal(30),
+                    Window.getX(zx*xdelta),Window.getYNormal((NUM_COLUMNS+1)*xdelta));
         }
         for (int zx = 1;zx<NUM_COLUMNS;zx++)
         {
            for (int zy = 1;zy<NUM_ROWS;zy++)
            {
-                if(board[zx][zy]==1){
-                    g.setColor(Color.gray);
-                    g.fillRect(Window.getX(zx*xdelta), Window.getY(zy*ydelta), xdelta, ydelta);
-//                      System.out.println("zy = " + zy + "zx = " + zx);
+                if (board1[zx][zy] == WATR )
+                {
+                    g.setColor(Color.blue);
+                    g.fillOval(Window.getX(31)+zy*Window.getWidth2()/(xdelta-18),
+                    Window.getY(31)+zx*Window.getHeight2()/(ydelta-6),
+                    xdelta-1,
+                    ydelta-1);
+                }
+                if (board2[zx][zy] == SHIP )
+                {
+                    g.setColor(Color.DARK_GRAY);
+                    g.fillOval(Window.getX(31)+zy*Window.getWidth2()/(xdelta-18),
+                    Window.getY(391)+zx*Window.getHeight2()/(ydelta-6),
+                    xdelta-1,
+                    ydelta-1);
+                }
+                if (board2[zx][zy] == ShowCrouser )
+                {
+                    g.setColor(Color.LIGHT_GRAY);
+                    g.fillOval(Window.getX(31)+zy*Window.getWidth2()/(xdelta-18),
+                    Window.getY(391)+zx*Window.getHeight2()/(ydelta-6),
+                    xdelta-1,
+                    ydelta-1);
                 }
            }   
         }

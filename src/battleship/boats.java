@@ -19,7 +19,7 @@ public class boats {
     private int zCol;
     private int zRow;
     boats(int _zCol,int _zRow){
-        if(Board.board[_zCol][_zRow]==0){
+        if(Board.board2[_zCol][_zRow]==0){
             zCol=_zCol;
             zRow=_zRow;
             System.out.println(peiceLenth[peiceNum]+""+peiceNum);
@@ -34,16 +34,16 @@ public class boats {
         System.out.println(peicelenth);
         if (dir == 1)
             for(int i =0; i<peicelenth;i++)
-             Board.board[zCol+i][zRow]=1;
+             Board.board2[zCol+i][zRow]=Board.SHIP;
         else if (dir == 2)
             for(int i =0; i<peicelenth;i++)
-             Board.board[zCol][zRow+i]=1;
+             Board.board2[zCol][zRow+i]=Board.SHIP;
         else if (dir == 3)
             for(int i =0; i<peicelenth;i++)
-             Board.board[zCol-i][zRow]=1;
+             Board.board2[zCol-i][zRow]=Board.SHIP;
         else if (dir == 4)
             for(int i =0; i<peicelenth;i++)
-             Board.board[zCol][zRow-i]=1;
+             Board.board2[zCol][zRow-i]=Board.SHIP;
         
            System.out.println("zcol="+zCol+"zrow"+zRow); 
     }

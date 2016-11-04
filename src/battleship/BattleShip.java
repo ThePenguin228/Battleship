@@ -18,6 +18,8 @@ public class BattleShip extends JFrame implements Runnable {
     Graphics2D g;
     int mostRecentRow;
     int mostRecentCol;
+    public static int mostRecentRowMove ;
+    public static int mostRecentColMove ;
     Board board[][] = new Board[Board.NUM_ROWS][Board.NUM_COLUMNS];
     Board board2[][] = new Board[Board.NUM_ROWS][Board.NUM_COLUMNS];
     static boats ships[] = new boats[boats.peiceLenth.length];
@@ -94,6 +96,36 @@ public class BattleShip extends JFrame implements Runnable {
 
     addMouseMotionListener(new MouseMotionAdapter() {
       public void mouseMoved(MouseEvent e) {
+        if(currentShipNum<boats.peiceLenth.length){
+            int ydelta = Window.getHeight2()/Board.NUM_ROWS;
+            int xdelta = Window.getWidth2()/Board.NUM_COLUMNS;
+
+            int zcol = 0;
+            int zcolLoc = xdelta;
+
+            int zrowLoc = ydelta;
+            for (int i=0;i<Board.NUM_COLUMNS;i++)
+            {
+                if (zcolLoc*i < e.getX()-Window.getX(0))
+                    zcol = i;
+            } 
+
+            for (int i=Board.NUM_ROWS-1;i>=0;i--)
+            {
+                if (board[i][zcol] == null)
+                {
+                    if (zrowLoc*i < e.getY()-Window.getY(0))
+                    {   
+//                      ships[currentShipNum]=new boats(zcol,i);
+                        Board.board2[zcol][i]=Board.ShowCrouser;
+                        
+                        mostRecentRowMove=i;
+                        mostRecentColMove=zcol;
+                        break;
+                    }
+                }
+            }
+        }
         repaint();
       }
     });
@@ -104,28 +136,28 @@ public class BattleShip extends JFrame implements Runnable {
 //Keys that determine the direction to move the snake.                
                 if (e.VK_RIGHT == e.getKeyCode()){
                     if(shipset){
-                        if(Board.board[ships[currentShipNum-1].getzCol() + boats.peiceLenth[currentShipNum]][ships[currentShipNum-1].getzRow() ]==0)
+                        if(Board.board2[ships[currentShipNum-1].getzCol() + boats.peiceLenth[currentShipNum]][ships[currentShipNum-1].getzRow() ]==0)
                             ships[currentShipNum-1].setdir(1);
                     
                     }
                 }
                 if (e.VK_LEFT == e.getKeyCode()){
                     if(shipset){
-                        if(Board.board[ships[currentShipNum-1].getzCol() - boats.peiceLenth[currentShipNum]][ships[currentShipNum-1].getzRow() ]==0)
+                        if(Board.board2[ships[currentShipNum-1].getzCol() - boats.peiceLenth[currentShipNum]][ships[currentShipNum-1].getzRow() ]==0)
                             ships[currentShipNum-1].setdir(3);
                     
                     }
                 }
                 if (e.VK_UP == e.getKeyCode()){
                     if(shipset){
-                        if(Board.board[ships[currentShipNum-1].getzCol()][ships[currentShipNum-1].getzRow() - boats.peiceLenth[currentShipNum] ]==0)
+                        if(Board.board2[ships[currentShipNum-1].getzCol()][ships[currentShipNum-1].getzRow() - boats.peiceLenth[currentShipNum] ]==0)
                             ships[currentShipNum-1].setdir(4);
                     
                     }
                 }
                 if (e.VK_DOWN == e.getKeyCode()){
                     if(shipset){
-                        if(Board.board[ships[currentShipNum-1].getzCol() ][ships[currentShipNum-1].getzRow() + boats.peiceLenth[currentShipNum]]==0)
+                        if(Board.board2[ships[currentShipNum-1].getzCol() ][ships[currentShipNum-1].getzRow() + boats.peiceLenth[currentShipNum]]==0)
                             ships[currentShipNum-1].setdir(2);
                     
                     }
