@@ -117,7 +117,7 @@ public class BattleShip extends JFrame implements Runnable {
                     if (zrowLoc*i < e.getY()-Window.getY(0))
                     {   
 //                      ships[currentShipNum]=new boats(zcol,i);
-                        Board.board2[zcol][i]=Board.ShowCrouser;
+//                        Board.board2[zcol][i]=Board.ShowCrouser;
                         
                         mostRecentRowMove=i;
                         mostRecentColMove=zcol;

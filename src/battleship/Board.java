@@ -5,6 +5,8 @@
  */
 package battleship;
 
+import static battleship.BattleShip.mostRecentColMove;
+import static battleship.BattleShip.mostRecentRowMove;
 import java.awt.*;
 
 public class Board {
@@ -85,15 +87,22 @@ public class Board {
                     xdelta-1,
                     ydelta-1);
                 }
-                if (board2[zx][zy] == ShowCrouser )
-                {
-                    g.setColor(Color.LIGHT_GRAY);
-                    g.fillOval(Window.getX(31)+zy*Window.getWidth2()/(xdelta-18),
-                    Window.getY(391)+zx*Window.getHeight2()/(ydelta-6),
-                    xdelta-1,
-                    ydelta-1);
-                }
+//                if (board2[zx][zy] == ShowCrouser )
+//                {
+//                    g.setColor(Color.LIGHT_GRAY);
+//                    g.fillOval(Window.getX(31)+zy*Window.getWidth2()/(xdelta-18),
+//                    Window.getY(391)+zx*Window.getHeight2()/(ydelta-6),
+//                    xdelta-1,
+//                    ydelta-1);
+//                }
            }   
         }
+
+            g.setColor(Color.LIGHT_GRAY);
+            g.fillOval(Window.getX(31)+mostRecentColMove*Window.getWidth2()/(xdelta-18),
+            Window.getY(391)+mostRecentRowMove*Window.getHeight2()/(ydelta-6),
+            xdelta-1,
+            ydelta-1);
+        
     }
 }
