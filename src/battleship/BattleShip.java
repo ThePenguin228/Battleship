@@ -30,6 +30,7 @@ public class BattleShip extends JFrame implements Runnable {
         frame.setSize(Window.WINDOW_WIDTH, Window.WINDOW_HEIGHT);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setVisible(true);
+        frame.setResizable(false);
     }
 
     public BattleShip() {
@@ -97,16 +98,18 @@ public class BattleShip extends JFrame implements Runnable {
     addMouseMotionListener(new MouseMotionAdapter() {
       public void mouseMoved(MouseEvent e) {
         if(currentShipNum<boats.peiceLenth.length){
-            int ydelta = Window.getHeight2()/Board.NUM_ROWS;
-            int xdelta = Window.getWidth2()/Board.NUM_COLUMNS;
-
+//            int ydelta = (Window.getHeight2()/2)/Board.NUM_ROWS;
+//            int xdelta = Window.getWidth2()/Board.NUM_COLUMNS;
+            int ydelta = Board.ydelta;
+            int xdelta = Board.xdelta;
+            
             int zcol = 0;
             int zcolLoc = xdelta;
 
             int zrowLoc = ydelta;
             for (int i=0;i<Board.NUM_COLUMNS;i++)
             {
-                if (zcolLoc*i < e.getX()-Window.getX(0))
+                if (zcolLoc*i < e.getX()-Window.getX(0)-xdelta)
                     zcol = i;
             } 
 
@@ -114,7 +117,7 @@ public class BattleShip extends JFrame implements Runnable {
             {
                 if (board[i][zcol] == null)
                 {
-                    if (zrowLoc*i < e.getY()-Window.getY(0))
+                    if (zrowLoc*i < e.getY()-Window.getY((Window.WINDOW_HEIGHT/2+(ydelta-10))-ydelta))
                     {   
 //                      ships[currentShipNum]=new boats(zcol,i);
 //                        Board.board2[zcol][i]=Board.ShowCrouser;
@@ -133,7 +136,7 @@ public class BattleShip extends JFrame implements Runnable {
         addKeyListener(new KeyAdapter() {
 
             public void keyPressed(KeyEvent e) {
-//Keys that determine the direction to move the snake.                
+//Keys that determine the direction of the ship.                
                 if (e.VK_RIGHT == e.getKeyCode()){
                     if(shipset){
                         if(Board.board2[ships[currentShipNum-1].getzCol() + boats.peiceLenth[currentShipNum]][ships[currentShipNum-1].getzRow() ]==0)
@@ -202,7 +205,7 @@ public class BattleShip extends JFrame implements Runnable {
         g.setColor(Color.white);
         g.fillPolygon(x, y, 4);
 // draw border
-        g.setColor(Color.red);
+        g.setColor(Color.black);
         g.drawPolyline(x, y, 5);
 
         if (animateFirstTime) {

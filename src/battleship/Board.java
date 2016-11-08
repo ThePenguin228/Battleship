@@ -15,7 +15,10 @@ public class Board {
     
     final static int WATR = 0;
     final static int SHIP = 1;
-    final static int ShowCrouser=2;
+    final static int ShowCrouser = 2;
+//Calculate the width and height of each board square.
+    final static int ydelta = 30; // rows
+    final static int xdelta = 30; // columns
     
 //    static int board[][] = new int [NUM_ROWS][NUM_COLUMNS];
     static int board1[][] = {{SHIP,SHIP,SHIP,SHIP,SHIP,SHIP,SHIP,SHIP,SHIP,SHIP,SHIP},  
@@ -42,9 +45,6 @@ public class Board {
     
     public static void Draw(Graphics2D g)
     {
-//Calculate the width and height of each board square.
-        int ydelta = 30; // rows
-        int xdelta = 30; // columns
         
 
  //draw grid
