@@ -21,27 +21,9 @@ public class Board {
     final static int xdelta = 30; // columns
     
 //    static int board[][] = new int [NUM_ROWS][NUM_COLUMNS];
-    static int board1[][] = {{SHIP,SHIP,SHIP,SHIP,SHIP,SHIP,SHIP,SHIP,SHIP,SHIP,SHIP},  
-                             {SHIP,SHIP,SHIP,SHIP,SHIP,SHIP,WATR,WATR,WATR,WATR,SHIP},  
-                             {SHIP,WATR,WATR,WATR,SHIP,SHIP,WATR,SHIP,WATR,SHIP,SHIP},  
-                             {SHIP,WATR,SHIP,WATR,WATR,WATR,WATR,SHIP,WATR,SHIP,SHIP},  
-                             {SHIP,WATR,SHIP,SHIP,SHIP,WATR,SHIP,WATR,WATR,SHIP,SHIP},  
-                             {SHIP,WATR,SHIP,SHIP,SHIP,WATR,SHIP,WATR,SHIP,SHIP,SHIP},  
-                             {SHIP,WATR,WATR,SHIP,WATR,WATR,SHIP,WATR,WATR,SHIP,WATR},  
-                             {SHIP,SHIP,WATR,WATR,WATR,SHIP,WATR,WATR,SHIP,SHIP,SHIP},  
-                             {SHIP,SHIP,WATR,SHIP,SHIP,SHIP,WATR,SHIP,SHIP,SHIP,SHIP},
-                             {SHIP,SHIP,WATR,SHIP,SHIP,SHIP,WATR,SHIP,SHIP,SHIP,SHIP}}; 
+    static int board1[][] = new int [NUM_ROWS][NUM_COLUMNS];
     
-    static int board2[][] = {{SHIP,SHIP,SHIP,SHIP,SHIP,SHIP,SHIP,SHIP,SHIP,SHIP,SHIP},  
-                             {SHIP,SHIP,SHIP,SHIP,SHIP,SHIP,WATR,WATR,WATR,WATR,SHIP},  
-                             {SHIP,WATR,WATR,WATR,SHIP,SHIP,WATR,SHIP,WATR,SHIP,SHIP},  
-                             {SHIP,WATR,SHIP,WATR,WATR,WATR,WATR,SHIP,WATR,SHIP,SHIP},  
-                             {SHIP,WATR,SHIP,SHIP,SHIP,WATR,SHIP,WATR,WATR,SHIP,SHIP},  
-                             {SHIP,WATR,SHIP,SHIP,SHIP,WATR,SHIP,WATR,SHIP,SHIP,SHIP},  
-                             {SHIP,WATR,WATR,SHIP,WATR,WATR,SHIP,WATR,WATR,SHIP,WATR},  
-                             {SHIP,SHIP,WATR,WATR,WATR,SHIP,WATR,WATR,SHIP,SHIP,SHIP},  
-                             {SHIP,SHIP,WATR,SHIP,SHIP,SHIP,WATR,SHIP,SHIP,SHIP,SHIP},
-                             {SHIP,SHIP,WATR,SHIP,SHIP,SHIP,WATR,SHIP,SHIP,SHIP,SHIP}}; 
+    static int board2[][] = new int [NUM_ROWS][NUM_COLUMNS];
     
     public static void Draw(Graphics2D g)
     {
@@ -71,7 +53,7 @@ public class Board {
         {
            for (int zy = 1;zy<NUM_ROWS;zy++)
            {
-                if (board1[zx][zy] == WATR )
+                if (board2[zx][zy] == WATR )
                 {
                     g.setColor(Color.blue);
                     g.fillOval(Window.getX(31)+zy*Window.getWidth2()/(xdelta-18),
@@ -82,8 +64,8 @@ public class Board {
                 if (board2[zx][zy] == SHIP )
                 {
                     g.setColor(Color.DARK_GRAY);
-                    g.fillOval(Window.getX(31)+zy*Window.getWidth2()/(xdelta-18),
-                    Window.getY(391)+zx*Window.getHeight2()/(ydelta-6),
+                    g.fillOval(Window.getX(31)+zx*Window.getWidth2()/(xdelta-18),
+                    Window.getY(391)+zy*Window.getHeight2()/(ydelta-6),
                     xdelta-1,
                     ydelta-1);
                 }

@@ -98,11 +98,19 @@ public class BattleShip extends JFrame implements Runnable {
     addMouseMotionListener(new MouseMotionAdapter() {
       public void mouseMoved(MouseEvent e) {
         if(currentShipNum<boats.peiceLenth.length){
+<<<<<<< Updated upstream
 //            int ydelta = (Window.getHeight2()/2)/Board.NUM_ROWS;
 //            int xdelta = Window.getWidth2()/Board.NUM_COLUMNS;
             int ydelta = Board.ydelta;
             int xdelta = Board.xdelta;
             
+=======
+
+            int ydelta = Window.getHeight2()/Board.NUM_ROWS;
+            int xdelta = Window.getWidth2()/Board.NUM_COLUMNS;
+
+
+>>>>>>> Stashed changes
             int zcol = 0;
             int zcolLoc = xdelta;
 
