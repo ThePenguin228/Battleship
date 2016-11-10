@@ -7,6 +7,7 @@ package battleship;
 
 import static battleship.BattleShip.mostRecentColMove;
 import static battleship.BattleShip.mostRecentRowMove;
+import static battleship.BattleShip.ships;
 import java.awt.*;
 
 public class Board {
@@ -75,16 +76,69 @@ public class Board {
 //                    g.fillOval(Window.getX(31)+zy*Window.getWidth2()/(xdelta-18),
 //                    Window.getY(391)+zx*Window.getHeight2()/(ydelta-6),
 //                    xdelta-1,
+//                        mostRecentRowMove=i;
+//                        mostRecentColMove=zcol;
 //                    ydelta-1);
 //                }
            }   
         }
 
             g.setColor(Color.LIGHT_GRAY);
-            g.fillOval(Window.getX(31)+mostRecentColMove*Window.getWidth2()/(xdelta-18),
-            Window.getY(391)+mostRecentRowMove*Window.getHeight2()/(ydelta-6),
-            xdelta-1,
-            ydelta-1);
+            switch (BattleShip.ships[BattleShip.currentShipNum].getDirection()) {
+                 case 1:
+                    if(mostRecentColMove+boats.peiceLenth[BattleShip.currentShipNum]>NUM_COLUMNS)
+                        g.setColor(Color.red);
+                    break;
+                case 2:
+                    if(mostRecentRowMove+boats.peiceLenth[BattleShip.currentShipNum]>NUM_ROWS)
+                        g.setColor(Color.red);
+                    break;
+                case 3:
+                    if(mostRecentColMove-boats.peiceLenth[BattleShip.currentShipNum]<0)
+                        g.setColor(Color.red);
+                    break;
+                case 4:
+                    if(mostRecentRowMove-boats.peiceLenth[BattleShip.currentShipNum]<0)
+                        g.setColor(Color.red);
+                    break;
+                default:
+                    break;
+            }
+            
+        switch (BattleShip.ships[BattleShip.currentShipNum].getDirection()) {
+            case 1:
+                for(int i=0;i<boats.peiceLenth[BattleShip.currentShipNum];i++)
+                    g.fillOval(Window.getX(31)+(mostRecentColMove+i)*Window.getWidth2()/(xdelta-18),
+                            Window.getY(391)+(mostRecentRowMove)*Window.getHeight2()/(ydelta-6),
+                            xdelta-1,
+                            ydelta-1);
+                break;
+            case 2:
+                for(int i=0;i<boats.peiceLenth[BattleShip.currentShipNum];i++)
+                    g.fillOval(Window.getX(31)+(mostRecentColMove)*Window.getWidth2()/(xdelta-18),
+                            Window.getY(391)+(mostRecentRowMove+i)*Window.getHeight2()/(ydelta-6),
+                            xdelta-1,
+                            ydelta-1);
+                break;
+            case 3:
+                for(int i=0;i<boats.peiceLenth[BattleShip.currentShipNum];i++)
+                    g.fillOval(Window.getX(31)+(mostRecentColMove-i)*Window.getWidth2()/(xdelta-18),
+                            Window.getY(391)+(mostRecentRowMove)*Window.getHeight2()/(ydelta-6),
+                            xdelta-1,
+                            ydelta-1);
+                break;
+            case 4:
+                for(int i=0;i<boats.peiceLenth[BattleShip.currentShipNum];i++)
+                    g.fillOval(Window.getX(31)+(mostRecentColMove)*Window.getWidth2()/(xdelta-18),
+                            Window.getY(391)+(mostRecentRowMove-i)*Window.getHeight2()/(ydelta-6),
+                            xdelta-1,
+                            ydelta-1);
+                break;
+            default:
+                break;
+        }
+            
+            
         
     }
 }
