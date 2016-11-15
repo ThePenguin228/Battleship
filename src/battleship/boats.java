@@ -24,27 +24,30 @@ public class boats {
     public void setINFO(int _zCol,int _zRow){
         boolean validpeiceset=true;
         //////////////////////////////
-        System.out.println(peicelenth);
-        if (direction == 1)
-            for(int i =0; i<peicelenth;i++){
-                if(Board.board2[zCol+i][zRow]==Board.SHIP)
-                    validpeiceset=false;
-            }
-        else if (direction == 2)
-            for(int i =0; i<peicelenth;i++){
-                if(Board.board2[zCol][zRow+i]==Board.SHIP)
-                    validpeiceset=false;
-            }
-        else if (direction == 3)
-            for(int i =0; i<peicelenth;i++){
-                if(Board.board2[zCol-i][zRow]==Board.SHIP)
-                    validpeiceset=false;
-            }
-        else if (direction == 4)
-            for(int i =0; i<peicelenth;i++){
-                if(Board.board2[zCol+i][zRow]==Board.SHIP)
-                    validpeiceset=false;
-            }
+        switch (direction) {
+            case 1:
+                for(int i =0; i<peicelenth;i++){
+                    if(Board.board2[zCol+i][zRow]==Board.SHIP)
+                        validpeiceset=false;
+                }   break;
+            case 2:
+                for(int i =0; i<peicelenth;i++){
+                    if(Board.board2[zCol][zRow+i]==Board.SHIP)
+                        validpeiceset=false;
+                }   break;
+            case 3:
+                for(int i =0; i<peicelenth;i++){
+                    if(Board.board2[zCol-i][zRow]==Board.SHIP)
+                        validpeiceset=false;
+                }   break;
+            case 4:
+                for(int i =0; i<peicelenth;i++){
+                    if(Board.board2[zCol+i][zRow]==Board.SHIP)
+                        validpeiceset=false;
+                }   break;
+            default:
+                break;
+        }
         //////////////////////////////    
         if(validpeiceset){
             zCol=_zCol;
