@@ -11,12 +11,20 @@ import java.awt.*;
 public class Board {
     final static int NUM_ROWS = 10;
     final static int NUM_COLUMNS = 10;
+<<<<<<< Updated upstream
     
     public final static int EMPTY = 0;
     public final static int SHIP = 1;
     public final static int HIT = 2;
     public final static int MISS = 3;
     public final static int ShowCrouser = 5;
+=======
+    final static int NUM_AI_BOARDS=2;
+            
+    final static int WATR = 0;
+    final static int SHIP = 1;
+    final static int ShowCrouser = 2;
+>>>>>>> Stashed changes
 //Calculate the width and height of each board square.
     final static int ydelta = 30; // rows
     final static int xdelta = 30; // columns
@@ -25,6 +33,8 @@ public class Board {
     static int board1[][] = new int [NUM_ROWS][NUM_COLUMNS];
     
     static int board2[][] = new int [NUM_ROWS][NUM_COLUMNS];
+    
+    static int board3[][] = new int [NUM_ROWS][NUM_COLUMNS];
     
     public static void Draw(Graphics2D g)
     {
@@ -112,8 +122,9 @@ public class Board {
 //                }
            }   
         }
-
+        if(BattleShip.shipset){
             g.setColor(Color.LIGHT_GRAY);
+<<<<<<< Updated upstream
             if(BattleShip.shipset){
                 if(BattleShip.currentShipNum<boats.peiceLenth.length){
                     switch (BattleShip.ships[BattleShip.currentShipNum].getDirection()) {
@@ -180,6 +191,62 @@ public class Board {
                     xdelta-1,
                     ydelta-1);
                 
+=======
+            switch (BattleShip.ships[BattleShip.currentShipNum].getDirection()) {
+                 case 1:
+                    if(mostRecentColMove+boats.PEICELEGNTH[BattleShip.currentShipNum]>NUM_COLUMNS)
+                        g.setColor(Color.red);
+                    break;
+                case 2:
+                    if(mostRecentRowMove+boats.PEICELEGNTH[BattleShip.currentShipNum]>NUM_ROWS)
+                        g.setColor(Color.red);
+                    break;
+                case 3:
+                    if(mostRecentColMove-boats.PEICELEGNTH[BattleShip.currentShipNum]<0)
+                        g.setColor(Color.red);
+                    break;
+                case 4:
+                    if(mostRecentRowMove-boats.PEICELEGNTH[BattleShip.currentShipNum]<0)
+                        g.setColor(Color.red);
+                    break;
+                default:
+                    break;
+            }
+
+            switch (BattleShip.ships[BattleShip.currentShipNum].getDirection()) {
+                case 1:
+                    for(int i=0;i<boats.PEICELEGNTH[BattleShip.currentShipNum];i++)
+                        g.fillOval(Window.getX(31)+(mostRecentColMove+i)*Window.getWidth2()/(xdelta-18),
+                                Window.getY(391)+(mostRecentRowMove)*Window.getHeight2()/(ydelta-6),
+                                xdelta-1,
+                                ydelta-1);
+                    break;
+                case 2:
+                    for(int i=0;i<boats.PEICELEGNTH[BattleShip.currentShipNum];i++)
+                        g.fillOval(Window.getX(31)+(mostRecentColMove)*Window.getWidth2()/(xdelta-18),
+                                Window.getY(391)+(mostRecentRowMove+i)*Window.getHeight2()/(ydelta-6),
+                                xdelta-1,
+                                ydelta-1);
+                    break;
+                case 3:
+                    for(int i=0;i<boats.PEICELEGNTH[BattleShip.currentShipNum];i++)
+                        g.fillOval(Window.getX(31)+(mostRecentColMove-i)*Window.getWidth2()/(xdelta-18),
+                                Window.getY(391)+(mostRecentRowMove)*Window.getHeight2()/(ydelta-6),
+                                xdelta-1,
+                                ydelta-1);
+                    break;
+                case 4:
+                    for(int i=0;i<boats.PEICELEGNTH[BattleShip.currentShipNum];i++)
+                        g.fillOval(Window.getX(31)+(mostRecentColMove)*Window.getWidth2()/(xdelta-18),
+                                Window.getY(391)+(mostRecentRowMove-i)*Window.getHeight2()/(ydelta-6),
+                                xdelta-1,
+                                ydelta-1);
+                    break;
+                default:
+                    break;
+            }
+        }   
+>>>>>>> Stashed changes
             
         
     }
